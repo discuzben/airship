@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        #header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.3rem 0.3rem 0.2rem 0.3rem;
+            background-color: #0D0B35;
+        }
+
+        .wa-tleft {
+            width: 0.55rem;
+            height: 0.55rem;
+        }
+
+        .wa-title {
+            /*width: 3.08rem;*/
+            height: 0.44rem;
+            display: flex;
+            font-size: 0.4rem;
+        }
+
+        .wa-title .font1 {
+            color: white;
+        }
+
+        .wa-title .font2 {
+            color: #71FAF5;
+        }
+
+        .message {
+            width: 0.45rem;
+            height: 0.45rem;
+        }
+
+        .swiper-part {
+            /*background-color: white;*/
+            padding-top: 0.2rem;
+        }
+
+        .swiper-container {
+            width: 100%;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 90%;
+            height: 3rem;
+            border-radius: 0.05rem;
+        }
+
+        .notice {
+            padding: 0.35rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .read {
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(17, 104, 228, 1);
+        }
+
+        .quest {
+            display: flex;
+            align-items: center;
+        }
+
+        .quest-img {
+            width: 0.33rem;
+            height: 0.33rem;
+            margin-right: 0.1rem;
+        }
+
+        .quest-font {
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            /*font-weight:bold;*/
+            color: #6AFFFA;
+        }
+
+        .centre {
+            padding: 0 0.3rem;
+        }
+
+        .centre .top {
+            margin-top: 0.1rem;
+            display: flex;
+            margin-bottom: 0.25rem;
+            justify-content: space-between;
+        }
+
+        .centre .advertis {
+            position: relative;
+        }
+
+        .advertis .bg {
+            position: absolute;
+        }
+
+        .advertis .font {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: absolute;
+            left: 0.3rem;
+            margin-top: 5%;
+        }
+
+        .advertis .one img {
+            width: 0.44rem;
+            height: 0.44rem;
+        }
+
+        .advertis .one {
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(106, 255, 250, 1);
+        }
+
+        .advertis .two {
+            font-size: 0.6rem;
+            font-family: JDZhengHT;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .advertis .three,
+        .advertis .four {
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(106, 255, 250, 1);
+        }
+
+        .advertis .four {
+            color: white;
+        }
+
+        .centre .top img {
+            width: 1.2rem;
+            height: 1.38rem;
+        }
+
+        .bot {
+            margin-top: 2.7rem;
+        }
+
+        .bot img {
+            margin-top: 0.4rem;
+        }
+
+        .swi-first {
+            position: relative;
+        }
+
+        .swi-first .font {
+            top: 50%;
+            height: 1.1rem;
+            margin-top: -0.55rem;
+            left: 0.5rem;
+            position: absolute;
+            color: white;
+            font-size: 0.5rem;
+            font-family: HYZongYiJ;
+        }
+
+        .swi-first .font2 {
+            font-size: 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="bui-scroll">
+            <div class="bui-scroll-head">
+            </div>
+            <div class="bui-scroll-main" style="background:transparent">
+                <main>
+                    <div id="header">
+                        <img class='wa-tleft' src="../image/index/star.png">
+                        <div class="wa-title">
+                            <div class="font1">
+                                Uni
+                            </div>
+                            <div class="font2">
+                                verse&nbsp;
+                            </div>
+                            <div class="font1">
+                                Global
+                            </div>
+                        </div>
+                        <!-- <img class='wa-title' src="../image/index/.png"> -->
+                        <img class='message' src="../image/index/china.png">
+                    </div>
+                    <div class="swiper-part">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide swi-first" style="background-image:url(../image/index/swiper.png)">
+                                    <div class="font">区块链游戏<br/>
+                                        <div class="font2">
+                                            多维收益
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                                <div class="swiper-slide" style="background-image:url(../image/index/swiper.png)"></div>
+                            </div>
+                        </div>
+                        <div class="notice" @click=openmessageCenter()>
+                            <div class="quest">
+                                <img class='quest-img' src="../image/index/discover.png">
+                                <div class="quest-font">
+                                    关于更新版本说明?
+                                </div>
+                            </div>
+                            <div class="read">
+                                查看所有公告
+                            </div>
+                        </div>
+                    </div>
+                    <div class="centre">
+                        <div class="top">
+                            <img src="../image/index/11.png" alt="" @click='recharge()'>
+                            <img src="../image/index/22.png" alt="" @click='openwithdraw()'>
+                            <img src="../image/index/33.png" alt="" @click='opencash()'>
+                            <img src="../image/index/44.png" alt="" @click='openchiipTransfer()'>
+                            <img src="../image/index/55.png" alt="" @click='openusdt()'>
+                        </div>
+                        <div class="advertis">
+                            <img class='bg' src="../image/index/circle.png">
+                            <div class="font">
+                                <div class="one">
+                                    总资产
+                                    <img src="../image/index/eye.png" alt="">
+                                </div>
+                                <div class="two">
+                                    $0.0000
+                                </div>
+                                <div class="three">
+                                    ≈￥0.00
+                                </div>
+                                <div class="four">
+                                    0 USDT不可提取
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bot" @click=openlottery()>
+                            <img src="../image/index/zhuanpan.png" alt="">
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../script/jquery.js"></script>
+<script src="../script/api.js"></script>
+<script src="../script/swiper.min.js"></script>
+<script src="../script/bui.js"></script>
+<script src="../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script>
+<script src="../script/md5-min.js"></script>
+<script src="../script/fastclick.js"></script> -->
+
+<script type="text/javascript">
+    var _vue = '',
+        apiready = function() {
+            init_bui();
+            aniSwiper();
+            api.setCustomRefreshHeaderInfo({
+                bgColor: '#0D0B35',
+                image: {
+                    pull: 'widget://image/pullrefresh/pull.png',
+                    transform: [
+                        'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                    ],
+                    load: [
+                        'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                    ]
+                }
+            }, function() {
+                setTimeout(function() {
+                    api.refreshHeaderLoadDone()
+                }, 1000);
+            });
+        }
+        //按钮手动启动下拉刷新
+    function fnRefreshHeaderLoading() {
+        api.refreshHeaderLoading();
+    };
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                index: 1,
+                infoIndex: 1
+            },
+            mounted() {},
+            methods: {
+              openmessageCenter() {
+                api.openWin({
+                    name: 'messageCenter',
+                    url: './messageCenter/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              },
+              openchiipTransfer() {
+                    api.openWin({
+                        name: 'chipTransfer',
+                        url: './chipTransfer/index.html',
+                        bounces: false,
+                        pageParam: {
+                            name: 'test'
+                        },
+                    }, function(ret, err) {
+                        if (ret) {
+                            // console.log(ret)
+                        }
+                    });
+
+              },
+              openusdt() {
+                api.openWin({
+                    name: 'usdt',
+                    url: './usdt/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              },
+              recharge() {
+                api.openWin({
+                    name: 'recharge',
+                    url: './recharge/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              },
+              openwithdraw() {
+                api.openWin({
+                    name: 'withdraw',
+                    url: './withdraw/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              },
+              opencash() {
+                api.openWin({
+                    name: 'cash',
+                    url: './cash/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              },
+              openlottery() {
+                api.openWin({
+                    name: 'lottery',
+                    url: './lottery/index.html',
+                    bounces: false,
+                    pageParam: {
+                        name: 'test'
+                    },
+                }, function(ret, err) {
+                    if (ret) {
+                        // console.log(ret)
+                    }
+                });
+              }
+            },
+        });
+    }
+
+    function aniSwiper() {
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            // grabCursor: true,
+            centeredSlides: true,
+            spaceBetween: '15%',
+            slidesPerView: 'auto',
+            loop: true,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 300,
+                modifier: 1,
+                slideShadows: true,
+            },
+        });
+    }
+</script>
+
+</html>

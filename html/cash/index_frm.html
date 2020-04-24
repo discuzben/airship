@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0.3rem;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+        }
+
+        .fitem {
+            flex-direction: row;
+        }
+
+        .fitem .chainname {
+            width: 1.39rem;
+            height: 0.51rem;
+            border: 1px solid rgba(0, 240, 255, 1);
+            border-radius: 0.04rem;
+            color: white;
+            font-size: 0.28rem;
+            line-height: 0.51rem;
+            text-align: center;
+            margin-left: 0.2rem;
+        }
+
+        .item .font {
+            font-size: 0.28rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            display: flex;
+            align-items: center;
+        }
+
+        .item input {
+            width: 100%;
+            height: 0.8rem;
+            background-color: transparent;
+            font-size: 0.24rem;
+            color: rgba(153, 153, 153, 1);
+            border: none;
+            border-bottom: 1px solid #BDC4CE;
+            margin-top: 0.1rem;
+        }
+
+        .notice {
+            width: 100%;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            padding-left: 0.25rem;
+            box-sizing: border-box;
+            background: rgba(11, 29, 84, 1);
+            border-radius: 0.04rem;
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(46, 255, 255, 1);
+        }
+
+        .tocm {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.28rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            margin-top: 0.2rem;
+        }
+
+        .pay {
+            width: 100%;
+            height: 0.96rem;
+            margin-top: 0.6rem;
+        }
+
+        .numcon {
+            position: relative;
+        }
+
+        .btn {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            right: 0.1rem;
+            color: white;
+            font-size: 0.24rem;
+            bottom: 0.3rem;
+        }
+
+        .btn .cm {
+            width: 0.9rem;
+            height: 0.28rem;
+            line-height: 0.28rem;
+            text-align: center;
+            border-right: 1px solid white;
+        }
+
+        .btn .qb {
+            text-align: center;
+            width: 0.9rem;
+            height: 0.28rem;
+            line-height: 0.28rem;
+        }
+
+        .useful {
+            color: rgba(0, 240, 255, 1);
+            font-size: 0.24rem;
+            margin-left: 0.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/default/back.png" @click=back() alt="">USDT闪兑
+        </div>
+        <div class="main">
+            <div class="list">
+                <div class="item fitem">
+                    <div class="font">闪兑</div>
+                    <div class="chainname">筹码</div>
+                </div>
+                <div class="item">
+                    <div class="font">数量
+                        <div class="useful">
+                            可用0.000000USDT
+                        </div>
+                    </div>
+                    <div class="numcon">
+                        <input type="text" name="" value="" placeholder="输入兑换数量">
+                        <div class="btn">
+                            <div class="cm">
+                                USDT
+                            </div>
+                            <div class="qb">全部</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="font">折合筹码数量
+                    </div>
+                    <div class="numcon">
+                        <input type="text" name="" value="" placeholder="0">
+                        <div class="btn">
+                            筹码
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                  <div class="font">交易密码</div>
+                  <input type="text" name="" value="" placeholder="输入支付密码">
+                </div>
+            </div>
+            <div class="notice">
+                最小闪兑数量为:1筹码。USDT闪兑1筹码。
+            </div>
+            <div class="tocm">
+                <div class="left">到账数量</div>
+                <div class="right">0.0000筹码</div>
+            </div>
+            <img class='pay' src="../../image/default/sure.png" alt="">
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function openframe() {
+        api.openFrame({
+            name: 'chat_page',
+            url: 'popup.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false,
+            pageParam: {
+                name: 'test'
+            },
+            bgColor: 'transparent',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        }, function(ret, err) {
+            if (ret) {
+                // console.log(ret)
+            }
+        });
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                swite: true,
+            },
+            mounted() {
+
+            },
+            methods: {
+                swit(e) {
+                    this.swite = e;
+                },
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

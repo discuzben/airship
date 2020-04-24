@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GB Canvas Turntable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" href="./css/typo/typo.css">
+    <link rel="stylesheet" href="./css/GB-canvas-turntable.css">
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background-color: #0D0B35;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            /*background: transparent;*/
+            outline: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: scroll;
+            display: block;
+        }
+
+        .title {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .title img {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            margin-top: -15px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .wrapper {
+            padding: 20px 40px;
+        }
+
+        .fork-github {
+            position: fixed;
+            right: -100px;
+            top: 45px;
+            z-index: 9999;
+            padding: 2px 100px;
+            font-size: 12px;
+            background-color: #444;
+            border: 1px solid #000;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            text-align: center;
+        }
+
+        .fork-github a {
+            color: #fff;
+        }
+
+        .gb-turntable a.gb-turntable-btn {
+            border: none;
+        }
+    </style>
+</head>
+
+<body ontouchstart>
+  <div class="title">
+    <img src="../../image/default/back.png" onclick=back() alt="">抽奖
+  </div>
+    <div class="wrapper typo" id="wrapper">
+        <section id="turntable" class="gb-turntable">
+            <div class="gb-turntable-container">
+                <canvas class="gb-turntable-canvas" width="300" height="300px">抱歉！浏览器不支持。</canvas>
+            </div>
+
+            <a class="gb-turntable-btn" href="javascript:;">抽奖</a>
+        </section>
+    </div>
+    <script src="../../script/vue.js"></script>
+    <script src="../../script/api/api.js"></script>
+    <script src="./js/GBcanvasturntable.js"></script>
+    <script>
+        var _vue = '';
+        apiready = function() {
+            init_bui();
+            // initBook();
+            // listContact.hide();
+            // openframe();
+
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+
+        }, false);
+
+        function back() {
+            api.historyBack({}, function(ret, err) {
+                if (!ret.status) {
+                    api.closeWin();
+                }
+            });
+        }
+
+        function init_bui() {
+            _vue = new Vue({
+                el: '#app',
+                data: {
+                    swite: true,
+                    typefir: true,
+                    typesec: true,
+                    account: '',
+                    password: ''
+
+                },
+                mounted() {
+
+                },
+                methods: {
+                    swit(e) {
+                        this.swite = e;
+                    },
+
+                },
+            });
+            api.setCustomRefreshHeaderInfo({
+                bgColor: '#0D0B35',
+                image: {
+                    pull: 'widget://image/pullrefresh/pull.png',
+                    transform: [
+                        'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                        'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                    ],
+                    load: [
+                        'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                        'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                    ]
+                }
+            }, function() {
+                //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+                setTimeout(function() {
+                    api.refreshHeaderLoadDone()
+                }, 1000);
+            });
+
+            gbTurntable.init({
+                id: 'turntable',
+                config: function(callback) {
+                    // 获取奖品信息
+                    // callback && callback(['11元红包','2元红包','3元红包','4元红包','5元红包','6元红包']);
+                    callback && callback([{
+                        text: '1元红包',
+                        img: 'images/redpacket.png'
+                    }, {
+                        text: '2元红包'
+                    }, {
+                        text: '3元红包'
+                    }, {
+                        text: '显示器',
+                        img: 'images/display.png'
+                    }, {
+                        text: '5元红宝'
+                    }, {
+                        text: '6元红宝'
+                    }])
+                },
+                getPrize: function(callback) {
+                    // 获取中奖信息
+                    var num = Math.random() * 6 >>> 0, //奖品ID
+                        chances = num; // 可抽奖次数
+                    callback && callback([num, chances]);
+                },
+                gotBack: function(data) {
+                    alert('恭喜抽中' + data);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

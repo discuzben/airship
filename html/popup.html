@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../css/api.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/main.css"> -->
+    <style media="screen">
+        body {
+            background-color: white;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        #app {
+            /*margin-top: 5rem;*/
+        }
+
+        .main {
+          width: 100%;
+          height: 6rem;
+          padding: 0.3rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .title{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .title .left{
+          font-weight: bold;
+          font-size: 0.32rem;
+        }
+        .fontnum{
+          color: #9B989C;
+        }
+        .numcon{
+          width: 100%;
+          height: 1rem;
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+        .numcon .left{
+          background-color: #F6F5F8;
+          width: 70%;
+          height: 100%;
+          top: 0.5rem;
+          padding-left: 0.2rem;
+          border: 1px solid #DEDEE0;
+        }
+        .numcon .all{
+          width: 29%;
+          height: 100%;
+          border: 1px solid #DEDEE0;
+          border-left: none;
+          text-align: center;
+          line-height: 1rem;
+          color: #8B8A8D;
+        }
+        .tip{
+          position: absolute;
+          top: 50%;
+          margin-top: -0.15rem;
+          right: 33%;
+          color: #929194;
+        }
+        .pass{
+          width: 100%;
+          height: 1rem;
+          background-color: #F6F5F8;
+          color: #646466;
+          border: 1px solid #DEDEE0;
+          padding-left: 0.2rem;
+          box-sizing: border-box;
+        }
+        .btn{
+          display: flex;
+          justify-content: space-between;
+        }
+        .btn .cancel,.btn .buy{
+          width: 48%;
+          height: 1rem;
+          color: white;
+          text-align: center;
+          line-height: 1rem;
+        }
+        .btn .cancel{
+          background-color: #EA6F66;
+        }
+        .btn .buy{
+          background-color: #5FC497;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="main" v-show='page'>
+            <div class="item title">
+                <div class="left">
+                    购买USDT
+                </div>
+                <div class="right">
+                    卖家:H76867
+                </div>
+            </div>
+            <div class="item fontnum">
+                请输入数量
+            </div>
+            <div class="item numcon">
+                <div class="left">
+                    <input type="number" name="" value="0">
+                    <div class="tip">
+                        USDT
+                    </div>
+                </div>
+                <div class="all">
+                    全部
+                </div>
+            </div>
+            <div class="item pass">
+                <input type="text" name="" value="" placeholder="请输入支付密码">
+            </div>
+            <div class="btn">
+                <div class="buy">
+                    购买
+                </div>
+                <div class="cancel" @click='close'>取消</div>
+            </div>
+        </div>
+
+        <div class="main"v-show='!page'>
+            <div class="item title">
+                <div class="left">
+                    出售USDT
+                </div>
+                <div class="right">
+                    买家:fadai213
+                </div>
+            </div>
+            <div class="item fontnum">
+                请输入数量
+            </div>
+            <div class="item numcon">
+                <div class="left">
+                    <input type="number" name="" value="0">
+                    <div class="tip">
+                        USDT
+                    </div>
+                </div>
+                <div class="all">
+                    全部
+                </div>
+            </div>
+            <div class="item pass">
+                <input type="text" name="" value="" placeholder="请输入支付密码">
+            </div>
+            <div class="btn">
+                <div class="buy">
+                    出售
+                </div>
+                <div class="cancel" @click='close'>取消</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../script/jquery.js"></script>
+<script src="../script/bui.js"></script>
+<script src="../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+      new Vue({
+          el: '#app',
+          data: {
+            page: true
+          },
+          mounted() {
+            this.page = api.pageParam.page;
+          },
+          methods: {
+              close() {
+                  api.closeFrame();
+              }
+          },
+      });
+    }
+</script>
+
+</html>

@@ -1,0 +1,211 @@
+.login-page-wrap{
+    
+    .btns{
+        width: 96%;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    .rem{
+        display: flex;
+        align-items: center;
+        margin-top: 0.2rem;
+    }
+    .icon-rem{
+        display: inline-block;
+        border-radius: 50%;
+        width: 0.3rem;
+        height: 0.3rem;
+        position: relative;
+        background: #fff;
+        border: 2px solid #66686A;
+        margin-right: 0.1rem;
+    }
+    .icon-rem.cur{
+        background: #152444;
+        border-color: #152444;
+    }
+    .btn-login{
+        width: 3.2rem;
+        height: 1.32rem;
+        background: url('../image/login/login-btn.png') no-repeat;
+        background-position: 100% 100%;
+        background-size: 100% 100%;
+        text-align: center;
+        line-height: 0.9rem;
+        color: #fff;
+        font-size: 0.34rem;
+        border-radius: 0.12rem;
+    }
+    .c-blue{
+        color: #2C65E7
+    }
+    .login-wrap{
+        .login-form{
+            background: #fff;
+            border-radius: 0.2rem;
+            padding: 0.5rem 0.3rem;
+            width: 86%;
+            margin: 0 auto;
+            margin-top: -3rem;
+            box-shadow: 0 0 8px #E3E3E3;
+            position: relative;
+            min-height: 4rem;
+            .title{
+                font-size: 0.46rem;
+                color: #3E4A59;
+                font-weight: bold;
+            }
+            .login-input{
+                border-bottom: 1px solid #E3E3E3;
+                padding: 0.2rem 0;
+                height: 0.8rem;
+                margin-top: 0.4rem;
+            }
+            .login-input:focus{
+                border-bottom: 2px solid #182740;
+            }
+        }
+    }
+    
+}
+.country_wrap{
+    position: relative;
+}
+#country_select{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.check-code-wrap{
+    padding: 0.35rem;
+    margin-top: 0.5rem;
+    .code-title{
+        font-size: 0.36rem;
+        margin-top: 0.4rem;
+    }
+    .code-msg{
+        font-size: 0.24rem;
+        margin-top: 0.2rem;
+    }
+    .btn-wrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.3rem;
+        span{
+            width: 30%;
+            padding: 0.1rem 0;
+            text-align: center;
+            border-radius: 0.5rem;
+            font-size: 0.24rem;
+        }
+        span.cur{
+            background: @c-app;
+            color: #fff;
+        }
+    }
+    .form-box{
+        margin-top: 0.5rem;
+        input{
+            height: 1rem;
+            flex: 1;
+            padding: 0 0.2rem;
+        }
+    }
+    .line{
+        border-bottom: 1px solid @c-app;
+    }
+    .w-100{
+        width: 100%;
+    }
+    .code-txt{
+        width: auto;
+        padding: 0.1rem 0.3rem;
+        background: @c-app;
+        color: #fff;
+        border-radius: 0.1rem;
+        font-size: 0.2rem;
+    }
+}
+.verBox{
+    /* imgver */
+    .slider-btn {
+        position:absolute;
+        width:44px;
+        height:44px;
+        left:0;
+        top:-7px;
+        z-index:12;
+        cursor:pointer;
+        background-image:url("../image/login/sprite.3.2.0.png");
+        background-position:0 -84px;
+        transition:inherit;
+    }
+    .ver-tips {
+        position:absolute;
+        left:0;
+        bottom:-22px;
+        background:rgba(255,255,255,0.9);
+        height:22px;
+        line-height:22px;
+        font-size:12px;
+        width:100%;
+        margin:0;
+        text-align:left;
+        padding:0 8px;
+        transition:all 0.4s;
+    }
+    .slider-tips {
+        bottom:0;
+    }
+    .ver-tips i {
+        display:inline-block;
+        width:22px;
+        height:22px;
+        vertical-align:top;
+        background-image: url('../image/login/sprite.3.2.0.png');
+        background-position: -4px -1229px;
+    }
+    .ver-tips span {
+        display:inline-block;
+        vertical-align:top;
+        line-height:22px;
+        color:#455;
+    }
+    .active-tips {
+        display:block;
+    }
+
+    .hidden {
+        display:none;
+    }
+    .re-btn {
+        position:absolute;
+        left:0;
+        bottom:0;
+        height:28px;
+        padding:0 16px;
+    }
+    .re-btn a {
+        display:inline-block;
+        width:14px;
+        height:14px;
+        margin:7px 0;
+        background-image: url('../image/login/sprite.3.2.0.png');
+        background-position: 0 -1179px;
+        cursor:pointer;
+    }
+    .re-btn a:hover {
+        background-position: 0 -1193px;
+    }
+    .ver_form{
+        background:transparent;
+        box-shadow:0 0 0;
+    }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+            position: relative;
+        }
+
+        #app {
+            box-sizing: border-box;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title .back {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .title .share {
+            position: absolute;
+            right: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.44rem;
+            height: 0.42rem;
+        }
+
+        .main {
+            /*margin: 0 0.3rem;*/
+            padding: 0 0.8rem;
+            width: 100%;
+            height: 4.18rem;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 9.5rem;
+            box-sizing: border-box;
+        }
+
+        .main .qrcode {
+            width: 3.17rem;
+            height: 3.17rem;
+        }
+
+        .main .font {
+            display: flex;
+            flex-direction: column;
+            margin-left: 0.2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .main .dtitle {
+            color: white;
+        }
+
+        .num {
+            display: flex;
+            align-items: baseline;
+            font-size: 0.72rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(249, 186, 63, 1);
+        }
+
+        .num img {
+            width: 0.31rem;
+            height: 0.31rem;
+            margin-left: 0.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <img class='bg' src="../../image/invite/bg.png" alt="">
+        <div class="title">
+            <img class='back' src="../../image/default/back.png" @click=back() alt=""> 邀请好友
+            <img class='share' src="../../image/invite/share.png" alt="">
+        </div>
+        <div class="main">
+            <img class='qrcode' src="../../image/default/qrcode.png" alt="">
+            <div class="font">
+                <div class="dtitle">
+                    邀请码:
+                </div>
+                <div class="num">
+                    {{adress}}
+                    <img src="../../image/invite/copy.png" alt="" @click=copy()>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                adress: '61854'
+            },
+            mounted() {
+
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                copy() {
+                    var _this = this;
+                    //text为需要复制的文本
+                    var clipBoard = api.require('clipBoard');
+                    clipBoard.set({
+                        value: _this.adress
+                    }, function(ret, err) {
+                        if (ret) {
+                            alert("復製成功" + JSON.stringify(ret))
+                        } else {
+                            alert("複製失敗，請重試");
+                        }
+                    });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

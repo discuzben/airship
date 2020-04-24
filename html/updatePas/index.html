@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page" v-cloak>
+
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<!-- <script src="../../script/vue.js"></script> -->
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        // var e = api.pageParam.page;
+        // initBook();
+        // listContact.hide();
+        openframe();
+
+    }
+
+    function openframe() {
+        api.openFrame({
+            name: 'index_frm',
+            url: 'index_frm.html',
+            rect: {
+                x: 0,
+                y: 30,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false,
+            pageParam: {
+                page: 1
+            },
+            bgColor: 'transparent',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        }, function(ret, err) {
+            if (ret) {
+                // console.log(ret)
+            }
+        });
+    }
+
+</script>
+
+</html>

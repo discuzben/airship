@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0.3rem;
+        }
+
+        .defaultsetting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dtitle {
+            font-size: 0.32rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            padding: 0.3rem 0 0.2rem 0;
+        }
+
+        .list {
+            border: 1px solid #747299;
+            border-radius: 0.16rem;
+        }
+
+        .list .item {
+            height: 1.2rem;
+            display: flex;
+            padding: 0 0.2rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #747299;
+        }
+
+        .list .item:nth-last-child(1) {
+            border-bottom: none;
+        }
+
+        .list .item img {
+            width: 0.48rem;
+            height: 0.48rem;
+        }
+
+        .list .item .left {
+            display: flex;
+            align-items: center;
+            font-size: 0.32rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .list .item .right {
+            display: flex;
+            align-items: center;
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(140, 145, 152, 1);
+        }
+
+        .list .item .left img {
+            margin-right: 0.2rem;
+        }
+
+        .btn {
+            width: 100%;
+            height: 1.07rem;
+            background-image: url('../../image/setting/signout.png');
+            background-size: cover;
+            color: #2EFFFF;
+            text-align: center;
+            line-height: 1.07rem;
+            font-size: 0.36rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/setting/back.png" @click=back() alt="">设置
+        </div>
+        <div class="main">
+            <div class="defaultsetting">
+                <div class="dtitle">基本设置</div>
+                <div class="list">
+                    <div class="item" @click=openpersonInfo()>
+                        <div class="left">
+                            <img src="../../image/setting/person.png" alt=""> 账号信息
+                        </div>
+                        <img src="../../image/setting/right.png" alt="">
+                    </div>
+                    <div class="item">
+                        <div class="left" @click=openupdatePas()>
+                            <img src="../../image/setting/shield.png" alt=""> 修改登录/交易密码
+                        </div>
+                        <img src="../../image/setting/right.png" alt="">
+                    </div>
+                    <div class="item" @click=openforgetPas()>
+                        <div class="left">
+                            <img src="../../image/setting/lock.png" alt=""> 忘记密码
+                        </div>
+                        <img src="../../image/setting/right.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="defaultsetting">
+                <div class="dtitle">关于</div>
+                <div class="list">
+                    <div class="item">
+                        <div class="left">
+                            <img src="../../image/setting/update.png" alt=""> 检查更新
+                        </div>
+                        <div class="right">
+                            <div class="cfont">当前版本:v7.1</div>
+                            <img src="../../image/setting/right.png" alt="">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="../../image/setting/feedback.png" alt=""> 意见反馈
+                        </div>
+                        <img src="../../image/setting/right.png" alt="">
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="../../image/setting/about.png" alt=""> 关于我们
+                        </div>
+                        <img src="../../image/setting/right.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="btn" @click=openforgetPas()>
+                退出
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                adress: '0x708a00738ddcbal6ee7b7883f2b81070ddb370f3'
+            },
+            mounted() {
+
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                openpersonInfo() {
+                  api.openWin({     
+                      name: 'personInfo',
+                           url: '../personInfo/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openupdatePas(e) {
+                  api.openWin({     
+                      name: 'updatePas',
+                           url: '../updatePas/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openforgetPas(){
+                  api.openWin({     
+                      name: 'updatePas',
+                           url: '../forgetPas/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

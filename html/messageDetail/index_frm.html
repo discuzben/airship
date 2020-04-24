@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+            position: relative;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            background-color: #0B1D54;
+            border-radius: 0.2rem;
+            color: white;
+            padding: 0 0.2rem;
+            margin: 0 0.3rem;
+            padding-bottom: 0.3rem;
+            font-size: 0.29rem;
+        }
+
+        .time {
+            width: 100%;
+            text-align: right;
+            font-size: 0.24rem;
+            margin-top: 0.2rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(186, 202, 204, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/default/back.png" @click=back() alt="">消息详情
+        </div>
+        <div class="main">
+            <div class="title">系统通知</div>
+            <div class="">
+
+                公链系统DAPP<br> 2月12日V1.1.3版本功能更新要点发布
+                <br>
+                <br> 1.生态新增DAPP发布
+                <br> (1)水果幸运池DAPP正式上线
+                <br> (2)水果公益DAPP正式上线
+                <br> (3)水果大学一 University DAPP正式上<br> (4)美团外卖及其它商城DAPP功能正式开
+                <br>
+                <br> 2.生态相关部分DAPP功能开通及优化
+                <br> 1)补充完善OTC、闪兑开通条件开通OTC用户委托功能设定OTC交易等级划分及相应权益
+                <br>
+                <br> 3.公链主体相关正式上线水果券通证
+                <br> (2)正式启动:开通水果公益捐助计划
+                <br> (3)N股币挂买功能完善优化
+                <br> (4)开通安卓版DAPP集成推送功能
+                <br> 5)1.1.2版本部分BUG修复
+                <br>
+            </div>
+            <div class="time">
+              2020-02-11 14 : 55 : 53
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function openframe() {
+        api.openFrame({
+            name: 'chat_page',
+            url: 'popup.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false,
+            pageParam: {
+                name: 'test'
+            },
+            bgColor: 'transparent',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        }, function(ret, err) {
+            if (ret) {
+                // console.log(ret)
+            }
+        });
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                adress: '0x708a00738ddcbal6ee7b7883f2b81070ddb370f3'
+            },
+            mounted() {
+
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                copy() {
+                    var _this = this;
+                    //text为需要复制的文本
+                    var clipBoard = api.require('clipBoard');
+                    clipBoard.set({
+                        value: _this.adress
+                    }, function(ret, err) {
+                        if (ret) {
+                            alert("復製成功" + JSON.stringify(ret))
+                        } else {
+                            alert("複製失敗，請重試");
+                        }
+                    });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

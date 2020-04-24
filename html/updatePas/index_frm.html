@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0.3rem;
+        }
+
+        .defaultsetting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dtitle {
+            font-size: 0.32rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            padding: 0.3rem 0 0.2rem 0;
+        }
+
+        .list {
+            /*border: 1px solid #747299;*/
+            border-radius: 0.16rem;
+        }
+
+        .list .item {
+            height: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.2rem;
+            align-items: center;
+            border: 1px solid #252753;
+            background-color: #0C0C35;
+            margin-top: 0.2rem;
+        }
+
+        .list .item input{
+          height: 80%;
+          width: 70%;
+          background: transparent;
+          border: none;
+          color: white;
+          padding-left: 0.2rem;
+          outline: none;
+        }
+
+        .list .item:nth-last-child(1) {
+            /*border-bottom: none;*/
+        }
+
+        .list .item img {
+            width: 0.48rem;
+            height: 0.48rem;
+        }
+
+        .list .item .left {
+            width: 1.8rem;
+            height: 0.8rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.3rem;
+            background-color: #2E379D;
+            padding: 0.1rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            margin-right: 0.2rem;
+            border-radius: 0.1rem;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .list .item .right {
+            display: flex;
+            align-items: center;
+            font-size: 0.3rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: white;
+        }
+
+        .list .item .left img {
+            margin-right: 0.2rem;
+        }
+
+        .btn {
+            width: 100%;
+            height: 1.07rem;
+            background-image: url('../../image/setting/signout.png');
+            background-size: cover;
+            color: #2EFFFF;
+            text-align: center;
+            line-height: 1.07rem;
+            font-size: 0.36rem;
+            margin-top: 1rem;
+        }
+        .switch{
+          display: flex;
+          justify-content: space-around;
+        }
+        .switch .login,.switch .trans{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: white;
+        }
+        .switch .font{
+          margin-top: 0.2rem;
+        }
+        .switch img{
+          width: 1rem;
+          height: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/setting/back.png" @click=back() alt="">{{page==false?'交易密码':'登录密码'}}
+        </div>
+        <div class="main">
+                <div class="switch">
+                  <div class="login" @click=switchPas(true)>
+                    <img :src="page==true?'../../image/default/loginSel.png':'../../image/default/loginNormal.png'" alt="">
+                    <div class="font">
+                      修改登录密码
+                    </div>
+                  </div>
+                  <div class="trans" @click=switchPas(false)>
+                    <img :src="page==false?'../../image/default/transSel.png':'../../image/default/transNormal.png'" alt="">
+                    <div class="font">
+                      修改交易密码
+                    </div>
+                  </div>
+                </div>
+                <div class="list" v-show='page'>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入旧登录密码">
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="验证码">
+                        <div class="left">发送验证码
+                        </div>
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入新登录密码">
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入新登录密码">
+                    </div>
+                </div>
+                <div class="list" v-show='!page'>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入旧交易密码">
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="验证码">
+                        <div class="left">发送验证码
+                        </div>
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入新交易密码">
+                    </div>
+                    <div class="item">
+                        <input type="text" name="" value="" placeholder="输入新交易密码">
+                    </div>
+                </div>
+            <div class="btn">
+                修改
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                page: true
+            },
+            mounted() {
+              // if (api.pageParam.page == 'trans') {
+              //   this.page = false;
+              // }else{
+              //   this.page = true;
+              // }
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                switchPas(e) {
+                  this.page = e;
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

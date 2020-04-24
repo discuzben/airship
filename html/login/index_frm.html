@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+            position: relative;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            width: 90%;
+            margin: 0 auto;
+            height: 10rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /*padding: 0 0.3rem;*/
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .item .eye {
+            width: 0.3rem;
+            height: 0.3rem;
+            position: absolute;
+            right: 0.2rem;
+            top: 0.35rem;
+        }
+
+        .item .font {
+            font-size: 0.28rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .item input {
+            width: 100%;
+            height: 0.8rem;
+            background-color: transparent;
+            font-size: 0.24rem;
+            color: rgba(153, 153, 153, 1);
+            /*border: none;*/
+            margin-top: 0.1rem;
+        }
+
+        .login {
+            width: 100%;
+            height: 1.07rem;
+            background-image: url('../../image/login/login.png');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            line-height: 1.07rem;
+            font-size: 0.36rem;
+            margin-top: 1rem;
+            position: absolute;
+            left: 0;
+            top: 8rem;
+        }
+
+        .sure {
+            width: 100%;
+            height: 1.07rem;
+            background-image: url('../../image/setting/signout.png');
+            background-size: cover;
+            color: #2EFFFF;
+            text-align: center;
+            line-height: 1.07rem;
+            font-size: 0.36rem;
+            margin-top: 1rem;
+            position: absolute;
+            top: 9.5rem;
+        }
+
+        .personR {
+            width: 2.33rem;
+            height: 2.83rem;
+            position: absolute;
+            right: 0;
+            top: 1.3rem;
+        }
+
+        .personL {
+            width: 5.87rem;
+            height: 3.6rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .dtitle {
+            font-size: 0.3rem;
+            line-height: 0.6rem;
+            font-family: Source Han Sans CN;
+            font-weight: 300;
+            color: rgba(46, 255, 255, 1);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .dtitle .people {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .dtitle .people .num {
+            font-size: 0.5rem;
+        }
+
+        .item input {
+            padding-left: 0.7rem;
+            background: rgba(1, 13, 132, 0.38);
+            box-shadow: 0px 0px 15px 1px rgba(0, 132, 255, 1);
+            border-radius: 4px;
+            color: white;
+        }
+
+        .item input::-webkit-input-placeholder {
+            color: #00F0FF;
+        }
+
+        .checkcode {
+            position: absolute;
+            right: 0.2rem;
+            top: 0.25rem;
+            color: #2EFFFF;
+        }
+
+        .find {
+            position: absolute;
+            top: 12rem;
+            right: 0.2rem;
+            font-size: 0.3rem;
+            font-family: Source Han Sans CN;
+            font-weight: 300;
+            color: rgba(46, 255, 255, 1);
+        }
+        .imgleft{
+          width: 0.3rem;
+          height: 0.3rem;
+          position: absolute;
+          left: 0.2rem;
+          top: 0.31rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <img class='bg' src="../../image/forgetPas/bg.png" alt="">
+        <img class='personR' src="../../image/forgetPas/personR.png" alt="">
+        <img class='personL' src="../../image/forgetPas/personL.png" alt="">
+        <!-- <div class="title">
+            <img src="../../image/default/back.png" @click=back() alt="">
+        </div> -->
+        <div class="main">
+            <div class="dtitle">
+                欢迎登陆 <br/>让我们陪您遇见更美好的自己!<br/>
+                <br/> 在过去的2019年里,共有
+                <br/>
+                <div class="people">
+                    <div class="num">2626373</div>位用户注册</div>
+            </div>
+            <div class="item">
+                <img class='imgleft' src="../../image/login/account.png" alt="">
+                <input type="text" name="" :value="account" placeholder="请输入账号">
+            </div>
+            <div class="item">
+                <img class='imgleft' src="../../image/login/password.png" alt="">
+                <input :type="typefir==true?'password':'text'" name="" :value="password" placeholder="请输入密码">
+                <img class='eye' :src="typefir==true?'../../image/login/eyeclose.png':'../../image/login/eyeopen.png'" alt="" @click='switchfireye()'>
+            </div>
+            <div class="login" @click=openindex()>登录</div>
+            <div class="sure" @click=openregister()>注册</div>
+            <div class="find" @click=openforgetPas()>
+                找回密码
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                swite: true,
+                typefir: true,
+                typesec: true,
+                account: '',
+                password: ''
+
+            },
+            mounted() {
+
+            },
+            methods: {
+                swit(e) {
+                    this.swite = e;
+                },
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                switchfireye() {
+                    this.typefir = !this.typefir;
+                },
+                switchseceye() {
+                    this.typesec = !this.typesec;
+                },
+                openforgetPas() {
+                  api.openWin({     
+                      name: 'forgetPas',
+                           url: '../forgetPas/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openregister() {
+                  api.openWin({     
+                      name: 'register',
+                           url: '../register/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openindex() {
+                  var _this = this;
+                  api.openWin({     
+                      name: 'index',
+                           url: '../../index.html',
+                           pageParam: {
+                             page: 1
+                           }   
+                  });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        #app {}
+
+        #header {
+            padding: 0 0.3rem;
+            width: 100%;
+            height: 1.05rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: #0D0B35;
+            color: #00F0FF;
+            font-size: 0.3rem;
+            justify-content: flex-end;
+            background-image: url('../image/mine/rect.png');
+            background-size: cover;
+        }
+
+        #header img {
+            width: 0.38rem;
+            height: 0.42rem;
+            margin-right: 0.15rem;
+        }
+
+        .u-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.3rem;
+        }
+
+        .u-info .left {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .u-info .left img {
+            width: 1.52rem;
+            height: 1.52rem;
+            margin-right: 0.2rem;
+        }
+
+        .u-info .left .nit {
+            font-size: 0.44rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            line-height: 40px;
+        }
+
+        .u-info .left .uni {
+            font-size: 0.24rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(189, 196, 206, 1);
+        }
+
+        .u-info .right {
+            width: 1.6rem;
+            height: 0.72rem;
+            background: rgba(0, 240, 255, 1);
+            border-radius: 0.36rem;
+            text-align: center;
+            line-height: 0.72rem;
+            color: rgba(12, 12, 51, 1);
+        }
+
+        .info-num {
+            height: 2rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.3rem;
+        }
+
+        .info-num .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-num .item .num {
+            font-size: 0.48rem;
+            font-family: JDZhengHT;
+            font-weight: 400;
+            color: rgba(0, 240, 255, 1);
+        }
+
+        .info-num .item .font {
+            font-size: 0.22rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(189, 196, 206, 1);
+        }
+
+        .line {
+            width: 100%;
+            height: 0.2rem;
+            background-color: black;
+        }
+
+        .centre {
+            padding: 0 0.3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .centre .item {
+            width: 100%;
+            height: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #161C4C;
+        }
+
+        .centre .item:last-child {
+            border-bottom: none;
+        }
+
+        .centre .item img {
+            width: 0.48rem;
+            height: 0.48rem;
+        }
+
+        .centre .item .left {
+            display: flex;
+            color: #00F0FF;
+            font-size: 0.3rem;
+        }
+
+        .centre .item .left img {
+            margin-right: 0.15rem;
+        }
+
+        .centre .item .right {
+            color: white;
+        }
+
+        .centre .item .right img {
+            margin-left: 0.15rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <main>
+            <div id="header">
+                <img src="../image/mine/mine.png" @click=opensetting()> 设置
+            </div>
+            <div class="u-info">
+                <div class="left">
+                    <img src="../image/mine/head.png" alt="">
+                    <div class="font">
+                        <div class="nit">
+                            用户昵称
+                        </div>
+                        <div class="uni">
+                            1541455568971
+                        </div>
+                    </div>
+                </div>
+                <div class="right" @click=openactivate()>
+                    激活账户
+                </div>
+            </div>
+            <div class="info-num">
+                <div class="item">
+                    <div class="num">
+                        21
+                    </div>
+                    <div class="font">
+                        静态收益
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="num">
+                        57
+                    </div>
+                    <div class="font">
+                        分享收益
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="num">
+                        36
+                    </div>
+                    <div class="font">
+                        usdt钱包明细
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="num">
+                        48
+                    </div>
+                    <div class="font">
+                        筹码钱包明细
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+            </div>
+            <div class="centre">
+
+                <div class="item" @click=opentransDetail()>
+                    <div class="left">
+                        <img src="../image/mine/pay.png"> 交易明细
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item" @click='gatheringInfo()'>
+                    <div class="left">
+                        <img src="../image/mine/upcoin.png"> 收款资料
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item" @click='openinvite()'>
+                    <div class="left">
+                        <img src="../image/mine/updatePas.png"> 推广分享
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item" @click='openteam()'>
+                    <div class="left">
+                        <img src="../image/mine/crecord.png"> 我的团队
+                    </div>
+                    <div class="right">
+                        团队0人
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="../image/mine/invite.png"> 众筹历史
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item" @click=openchiipTransfer()>
+                    <div class="left">
+                        <img src="../image/mine/record.png"> 筹码
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="../image/mine/feedback.png"> 问题反馈
+                    </div>
+                    <div class="right">
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="../image/mine/coinrecord.png"> 关于我们
+                    </div>
+                    <div class="right">
+                        版本1.0.1
+                        <img src="../image/mine/back.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="../script/jquery.js"></script>
+<script src="../script/bui.js"></script>
+<script src="../script/vue.js"></script>
+<script src="../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+    }
+
+    function openframe() {
+        api.openFrame({
+            name: 'chat_page',
+            url: 'popup.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false,
+            pageParam: {
+                name: 'test'
+            },
+            bgColor: 'transparent',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        }, function(ret, err) {
+            if (ret) {
+                // console.log(ret)
+            }
+        });
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {},
+            mounted() {
+
+            },
+            methods: {
+                openactivate() {
+                  api.openWin({     
+                      name: 'activate',
+                           url: './activate/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openchiipTransfer() {
+                    api.openWin({     
+                        name: 'chiipTransfer',
+                             url: './chipTransfer.html',
+                             pageParam: {       
+                               page: 1
+                             }   
+                    });
+                },
+                opensetting() {
+                    api.openWin({     
+                        name: 'setting',
+                             url: './setting/index.html',
+                             pageParam: {       
+                               page: 1
+                             }   
+                    });
+                },
+                opentransDetail() {
+                  api.openWin({     
+                      name: 'transDetail',
+                           url: './transDetail/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                gatheringInfo() {
+                  api.openWin({     
+                      name: 'gatheringInfo',
+                           url: './gatheringInfo/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openteam() {
+                  api.openWin({     
+                      name: 'team',
+                           url: './team/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                },
+                openinvite() {
+                  api.openWin({     
+                      name: 'invite',
+                           url: './invite/index.html',
+                           pageParam: {       
+                             page: 1
+                           }   
+                  });
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

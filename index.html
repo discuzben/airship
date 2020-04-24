@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Kdmail Global</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style type="text/css">
+    html{
+      background: #0D0B35;
+    }
+        header ul li {
+            height: 0px;
+            text-align: center;
+            display: none;
+            color: #323237;
+            position: relative;
+            font-size: 24px;
+        }
+
+        header ul li.active {
+            display: block;
+        }
+
+        #footer {
+            background-color: #020425;
+            box-shadow:0px 0px 41px 10px rgba(73,92,117,0.1);
+            margin-top: -0.1rem;
+        }
+        #footer ul{
+          padding-top: 8px;
+        }
+        #footer ul li {
+            padding-top: 28px;
+            padding-bottom: 4px;
+            font-size: 13px;
+            background: url() no-repeat center 2px;
+            background-size: auto 23px;
+            text-align: center;
+            color: #6C7172;
+        }
+
+        #footer ul li.active {
+            color: #6AFFFA;
+        }
+
+        #footer ul li:nth-child(1) {
+            background-image: url(./image/tabbar/icon_wallet.png);
+        }
+
+        #footer ul li:nth-child(2) {
+            background-image: url(./image/tabbar/icon_chat.png);
+        }
+
+        #footer ul li:nth-child(3) {
+            background-image: url(./image/tabbar/icon_ecology.png);
+        }
+
+        #footer ul li:nth-child(4) {
+            background-image: url(./image/tabbar/icon_mine.png);
+        }
+
+        #footer ul li:nth-child(1).active {
+            background-image: url(./image/tabbar/icon_wallet_active.png);
+        }
+
+        #footer ul li:nth-child(2).active {
+            background-image: url(./image/tabbar/icon_chat_active.png);
+        }
+
+        #footer ul li:nth-child(3).active {
+            background-image: url(./image/tabbar/icon_ecology_active.png);
+        }
+
+        #footer ul li:nth-child(4).active {
+            background-image: url(./image/tabbar/icon_mine_active.png);
+        }
+
+        .flex-con {
+            overflow: auto
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="flex-wrap flex-vertical">
+        <header>
+            <ul>
+                <li class="border-b active"></li>
+                <li class="border-b"></li>
+                <li class="border-b"></li>
+                <li class="border-b"></li>
+            </ul>
+        </header>
+        <div id="main" class="flex-con">
+
+        </div>
+        <div id="footer" class="border-t">
+            <ul class="flex-wrap">
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active">首页</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">星球</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">钱包</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">我的</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        $api.fixStatusBar($api.dom('header'));
+        api.setStatusBarStyle({
+            style: 'light',
+            color: '#0D0B35'
+        });
+        funIniGroup();
+    }
+
+    function funIniGroup() {
+        var eHeaderLis = $api.domAll('header li'),
+        frames = [{
+            name: 'wallet',
+            url: './html/wallet.html',
+            bgColor: 'rgba(0,0,0,.2)',
+            bounces: false
+        },{
+            name: 'chat',
+            url: './html/chat.html',
+            bgColor: 'rgba(0,0,0,.2)',
+            bounces: false
+        },{
+            name: 'ecology',
+            url: './html/ecology.html',
+            bgColor: 'rgba(0,0,0,.2)',
+            bounces: false
+        },{
+            name: 'mine',
+            url: './html/mine.html',
+            bgColor: 'rgba(0,0,0,.2)',
+            bounces: false
+        }];
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth,
+                h: $api.dom('#main').offsetHeight
+            },
+            vScrollBarEnabled:false,
+            index: 0,
+            frames: frames
+        }, function(ret, err) {
+
+        });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn(tag) {
+        if (tag == $api.dom('#footer li.active')) return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0, len = eFootLis.length; i < len; i++) {
+            if (tag == eFootLis[i]) {
+                index = i;
+            } else {
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls(eFootLis[index], 'active');
+        $api.addCls(eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+</script>
+
+</html>

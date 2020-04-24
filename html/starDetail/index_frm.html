@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+            position: relative;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            width: 6.51rem;
+            height: 8.79rem;
+            margin: 0 auto;
+            background: rgba(11, 29, 84, 1);
+            border-radius: 12px;
+        }
+
+        .item {
+            width: 100%;
+            height: 1rem;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 0.36rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+        }
+        .dtitle{
+          height: 1rem;
+          line-height: 1rem;
+          position: relative;
+          text-align: center;
+          color: white;
+          font-size: 0.3rem;
+        }
+        .dtitle img{
+          width: 0.3rem;
+          height: 0.3rem;
+          position: absolute;
+          top: 0.5rem;
+          margin-top: -0.2rem;
+          right: 0.3rem;
+        }
+        .sure {
+            width: 100%;
+            height: 1.07rem;
+            background-image: url('../../image/setting/signout.png');
+            background-size: cover;
+            color: #2EFFFF;
+            text-align: center;
+            line-height: 1.07rem;
+            font-size: 0.36rem;
+            margin-top: 0.6rem;
+        }
+        .list{
+          width: 100%;
+          color: white;
+          display: flex;
+          justify-content: space-around;
+          flex-direction: column;
+          align-items: center;
+          padding: 0.3rem;
+        }
+        .list .item{
+          justify-content: center;
+          margin-top: 0.3rem;
+        }
+        .list input{
+          margin-top: 0.3rem;
+          text-align: center;
+          background-color: #0C0C33;
+        }
+        .list .inpfis{
+          margin-top: 1rem;
+        }
+        .list input::-webkit-input-placeholder{
+          color: #00F0FF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/default/back.png" @click=back() alt="">{{title}}
+        </div>
+        <div class="main">
+          <div class="dtitle">
+            参与第28轮
+            <img src="../../image/starDetail/close.png" alt="">
+          </div>
+          <div class="list">
+            <div class="item" style="text-align:center">最小参与额度 1.00 UsDT</div>
+            <div class="item">最大参与额度 3000.00 USDT</div>
+            <input class='inpfis' type="text" name="" value="" placeholder="请输入参与额度">
+            <input type="text" name="" value="" placeholder="请输入交易密码">
+            <div class="sure">
+                确定
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                title: ''
+            },
+            mounted() {
+                var star = api.pageParam.star;
+                if (star == 'water') {
+                    this.title = '银河系_水星';
+                } else if (star == 'gold') {
+                    this.title = '银河系_金星';
+                } else if (star == 'wood') {
+                    this.title = '银河系_木星';
+                } else {
+                    this.title = '银河系_火星';
+                }
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                copy() {
+
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>

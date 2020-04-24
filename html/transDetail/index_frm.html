@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/bui/bui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <style media="screen">
+        body {
+            background-color: #0D0B35;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .title {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            font-size: 0.36rem;
+        }
+
+        .title img {
+            position: absolute;
+            left: 0.3rem;
+            top: 50%;
+            margin-top: -0.3rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .item {
+            width: 100%;
+            height: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            color: white;
+            font-size: 0.3rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+        }
+
+        .item:nth-child(1) {
+            background-color: #0B1D54;
+        }
+
+        .item .font {
+            width: 33.3%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .item img {
+            width: 0.16rem;
+            height: 0.09rem;
+            margin-left: 0.1rem;
+        }
+
+        .downcon {
+            position: absolute;
+            left: 50%;
+            margin-left: -0.72rem;
+            top: 1rem;
+            font-size: 0.3rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: rgba(0, 240, 255, 1);
+            background: rgba(11, 29, 84, 1);
+            border-radius: 0.04rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .downfont {
+          height: 1rem;
+          line-height: 1rem;
+          padding: 0 0.3rem;
+        }
+        #timecon{
+          left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="chat-page">
+        <div class="title">
+            <img src="../../image/default/back.png" @click=back() alt="">交易明细
+        </div>
+        <div class="main">
+            <div class="item">
+                <div class="font" @click=switchtime()>
+                    时间
+                    <img src="../../image/transDetail/dropdown.png" alt="">
+                </div>
+                <div class="font" @click=switchtype()>
+                    类型
+                    <img src="../../image/transDetail/dropdown.png" alt="">
+                </div>
+                <div class="font">
+                    数量
+                </div>
+            </div>
+            <div class="item">
+                <div class="font">
+                    20200303
+                </div>
+                <div class="font">
+                    转入
+                </div>
+                <div class="font">
+                    7211
+                </div>
+            </div>
+            <div class="item">
+                <div class="font">
+                    20200303
+                </div>
+                <div class="font">
+                    转入
+                </div>
+                <div class="font">
+                    7211
+                </div>
+            </div>
+            <div class="item">
+                <div class="font">
+                    20200303
+                </div>
+                <div class="font">
+                    转入
+                </div>
+                <div class="font">
+                    7211
+                </div>
+            </div>
+            <div class="item">
+                <div class="font">
+                    20200303
+                </div>
+                <div class="font">
+                    转入
+                </div>
+                <div class="font">
+                    7211
+                </div>
+            </div>
+            <div class="downcon" v-show='type'>
+              <div class="downfont">
+                转入
+              </div>
+              <div class="downfont">
+                转出
+              </div>
+              <div class="downfont">
+                等等
+              </div>
+            </div>
+            <div class="downcon" id='timecon' v-show='time'>
+              <div class="downfont">
+                20200303
+              </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../../script/jquery.js"></script>
+<script src="../../script/bui.js"></script>
+<script src="../../script/vue.js"></script>
+<!-- <script src="../script/common.js"></script> -->
+<!-- <script src="../script/md5-min.js"></script> -->
+<!-- <script src="../script/fastclick.js"></script> -->
+<script src="../../script/api/api.js"></script>
+
+<script type="text/javascript">
+    var _vue = '';
+    apiready = function() {
+        init_bui();
+        // initBook();
+        // listContact.hide();
+        // openframe();
+
+    }
+
+    function init_bui() {
+        _vue = new Vue({
+            el: '#app',
+            data: {
+                type: false,
+                time: false
+            },
+            mounted() {
+
+            },
+            methods: {
+                back() {
+                    api.historyBack({}, function(ret, err) {
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                    });
+                },
+                switchtype() {
+                  this.type = !this.type;
+                },
+                switchtime() {
+                  this.time = !this.time;
+                }
+            },
+        });
+        api.setCustomRefreshHeaderInfo({
+            bgColor: '#0D0B35',
+            image: {
+                pull: 'widget://image/pullrefresh/pull.png',
+                transform: [
+                    'widget://image/pullrefresh/pull_end_image_frame_01.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_02.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_03.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_04.png',
+                    'widget://image/pullrefresh/pull_end_image_frame_05.png'
+                ],
+                load: [
+                    'widget://image/pullrefresh/refreshing_image_frame_01.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_02.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_03.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_04.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_05.png',
+                    'widget://image/pullrefresh/refreshing_image_frame_06.png'
+                ]
+            }
+        }, function() {
+            //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+            setTimeout(function() {
+                api.refreshHeaderLoadDone()
+            }, 1000);
+        });
+    }
+</script>
+
+</html>
